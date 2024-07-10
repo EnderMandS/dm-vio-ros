@@ -1,6 +1,6 @@
-[submodule "thirdparty/sse2neon"]
+[submodule "main/thirdparty/sse2neon"]
 	path = main/thirdparty/sse2neon
 	url = https://github.com/jratcliff63367/sse2neon.git
-[submodule "test/googletest"]
+[submodule "main/test/googletest"]
 	path = main/test/googletest
 	url = https://github.com/google/googletest.git
