@@ -1,6 +1,6 @@
 FROM ros:noetic-ros-base-focal
 
-ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND noninteractive
 ENV ROS_DISTRO noetic
 ARG USERNAME=m
 ARG PROJECT_NAME=dm_vio
