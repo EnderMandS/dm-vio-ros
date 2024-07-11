@@ -45,13 +45,13 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
     sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/g' /home/$USERNAME/.zshrc
 SHELL ["/bin/zsh", "-c"]
 
-WORKDIR /home/${USERNAME}
+WORKDIR /home/${USERNAME}/code
 RUN git clone --depth 1 --recursive https://github.com/EnderMandS/dm-vio-ros.git ${PROJECT_NAME} && \
-    chmod 777 -R /home/${USERNAME}/${PROJECT_NAME} && cd ./${PROJECT_NAME} && \
-    cd ./main && mkdir build && cd build && cmake -GNinja .. && ninja && \
-    cd /home/${USERNAME}/${PROJECT_NAME}/ros_ws && . /opt/ros/${ROS_DISTRO}/setup.sh && \
+    chmod 777 -R /home/${USERNAME}/code/${PROJECT_NAME} && cd ./${PROJECT_NAME} && \
+    cd ./main && mkdir build && cd build && cmake -GNinja -DCMAKE_BUILD_TYPE=Release .. && ninja && \
+    cd /home/${USERNAME}/code/${PROJECT_NAME}/ros_ws && . /opt/ros/${ROS_DISTRO}/setup.sh && \
     catkin_make -DCATKIN_WHITELIST_PACKAGES="" -DCMAKE_BUILD_TYPE=Release && \
-    echo "source /home/m/dm_vio/ros_ws/devel/setup.zsh" >> /home/${USERNAME}/.zshrc
+    echo "source /home/m/code/dm_vio/ros_ws/devel/setup.zsh" >> /home/${USERNAME}/.zshrc
+WORKDIR /home/${USERNAME}/code/${PROJECT_NAME}
 
 ENTRYPOINT [ "/bin/zsh" ]
-# ENTRYPOINT [ "/home/m/code/ros_ws/setup.zsh" ]
